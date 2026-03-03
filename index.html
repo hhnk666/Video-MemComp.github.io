@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         scroll-behavior: smooth;
-        .nav-link:hover { color: #3b82f6; transition: 0.3s; }
+        .nav-link:hover { color: #3b82f6; transition: 0.3; }
         pre { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 8px; overflow-x: auto; }
         .hero-bg { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
         .table-img { box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 8px; }
@@ -36,7 +36,7 @@
     <nav class="sticky top-0 bg-white shadow-md z-50 py-4 hidden md:block">
         <div class="max-w-6xl mx-auto flex justify-center gap-10 font-medium text-gray-600">
             <a href="#paper" class="nav-link">Paper</a>
-            <a href="#overview" class="nav-link">Overview</a>
+            <a href="#overview" class="nav-link">概述</a>
             <a href="#results" class="nav-link">Results</a>
             <a href="#features" class="nav-link">Features</a>
             <a href="#backbones" class="nav-link">Backbones</a>
@@ -86,31 +86,53 @@
         <section id="results" class="mb-20">
             <h2 class="text-3xl font-bold mb-8 border-b-2 border-blue-500 inline-block">📊 Experimental Results</h2>
             
-            <div class="space-y-16">
-                <!-- Table 1 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <img src="https://github.com/user-attachments/assets/3be76d0e-bc57-4655-80ec-68b812817701" alt="Table 1" class="w-full table-img mb-4">
-                    <p class="text-sm text-gray-500 italic text-center">Table 1. Performance Comparison on Offline Video Understanding Benchmarks (VideoMME, MLVU, EgoSchema).</p>
-                </div>
-
-                <!-- Figure 3 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <img src="https://github.com/user-attachments/assets/a79ac8cb-e435-4f94-9891-6d4559dcdf79" alt="Figure 3" class="w-full max-w-2xl mx-auto mb-4">
-                    <p class="text-sm text-gray-500 italic text-center">Figure 3. Performance on MLVU with Qwen2-VL-7B across various KV budgets.</p>
-                </div>
-
-                <!-- New Table 2 & 3 -->
-                <div class="grid grid-cols-1 md:grid-cols-1 gap-12">
+            <div class="space-y-16 text-gray-700 leading-relaxed">
+                
+                <!-- 1. Offline Performance Analysis -->
+                <div class="result-block">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">1. Comprehensive Offline Video Understanding</h3>
+                    <p class="mb-6">
+                        We evaluate <strong>Video-MemComp</strong> across three representative offline benchmarks: <strong>VideoMME</strong> (long-term), <strong>MLVU</strong> (multi-task), and <strong>EgoSchema</strong> (egocentric). 
+                        As shown in Table 1, our method consistently meets or even exceeds the performance of full-cache baselines while using significantly less memory. This indicates that our Taylor expansion-guided strategy effectively identifies and preserves critical semantic information while discarding temporal redundancy.
+                    </p>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <!-- 请在此处替换 Table 2 的图片链接 -->
-                        <img src="https://github.com/user-attachments/assets/7ee86a59-da58-47f9-af34-bcbc42d88a63" alt="Table 2" class="w-full table-img mb-4">
-                        <p class="text-sm text-gray-500 italic text-center">Table 2. Quantitative Results on RVS Streaming Benchmarks: Comparison with state-of-the-art streaming baselines.</p>
+                        <img src="https://github.com/user-attachments/assets/3be76d0e-bc57-4655-80ec-68b812817701" alt="Table 1" class="w-full table-img mb-4">
+                        <p class="text-sm text-gray-500 italic text-center">Table 1. Performance Comparison on Offline Video Understanding Benchmarks. Bold and underlined values mark the best and second-best results.</p>
                     </div>
+                </div>
 
+                <!-- 2. Budget Scaling Analysis -->
+                <div class="result-block">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">2. Robustness Across Memory Budgets</h3>
+                    <p class="mb-6">
+                        A key advantage of Video-MemComp is its stability under various memory constraints. Figure 3 illustrates the performance curve on MLVU using the Qwen2-VL-7B backbone. 
+                        Our method outpaces all strong baselines (like SnapKV and InfiniPot) across the entire budget spectrum. Notably, at 6K, 12K, and 24K budgets, <strong>Video-MemComp surpasses the Full-KV performance</strong>, demonstrating that "more memory" isn't always better—targeted compression can actually reduce "attention noise" in long videos.
+                    </p>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <!-- 请在此处替换 Table 3 的图片链接 -->
-                        <img src="https://github.com/user-attachments/assets/9e07384f-405d-48e1-bab0-fd7c0982fd16" alt="Table 3" class="w-full table-img mb-4">
-                        <p class="text-sm text-gray-500 italic text-center">Table 3. System Efficiency on LLaVA-OneVision-7B: Peak Memory, Latency, and Throughput analysis.</p>
+                        <img src="https://github.com/user-attachments/assets/a79ac8cb-e435-4f94-9891-6d4559dcdf79" alt="Figure 3" class="w-full max-w-2xl mx-auto mb-4">
+                        <p class="text-sm text-gray-500 italic text-center">Figure 3. Accuracy vs. KV Cache Budget on MLVU. Our method maintains a superior accuracy-memory trade-off.</p>
+                    </div>
+                </div>
+
+                <!-- 3. Streaming & Efficiency Analysis -->
+                <div class="result-block">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">3. Streaming Understanding & System Efficiency</h3>
+                    <p class="mb-4">
+                        In real-world streaming scenarios (RVS Benchmarks), Video-MemComp achieves the <strong>highest average accuracy</strong> among all memory-constrained methods. Unlike retrieval-based approaches (e.g., ReKV) that suffer from high latency, our Taylor-expansion framework provides a direct, training-free compression path.
+                    </p>
+                    <p class="mb-6">
+                        Hardware efficiency results in Table 3 show that our framework reduces <strong>Peak Memory by ~27%</strong> and <strong>Time-to-First-Token (TTFT) by ~50%</strong> compared to ReKV. This efficiency enables long-video inference on consumer-grade GPUs (like RTX 4090) that would otherwise trigger Out-of-Memory (OOM) errors.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-1 gap-8">
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <img src="https://github.com/user-attachments/assets/7ee86a59-da58-47f9-af34-bcbc42d88a63" alt="Table 2" class="w-full table-img mb-4">
+                            <p class="text-sm text-gray-500 italic text-center">Table 2. Quantitative Results on RVS Streaming Benchmarks (Ego and Movie domains).</p>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <img src="https://github.com/user-attachments/assets/9e07384f-405d-48e1-bab0-fd7c0982fd16" alt="Table 3" class="w-full table-img mb-4">
+                            <p class="text-sm text-gray-500 italic text-center">Table 3. Efficiency metrics on LLaVA-OneVision-7B. Note the significant reduction in TTFT and Peak Memory.</p>
+                        </div>
                     </div>
                 </div>
             </div>
