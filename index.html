@@ -92,7 +92,7 @@
                 <div class="result-block">
                     <h3 class="text-xl font-bold mb-4 text-gray-800">1. Comprehensive Offline Video Understanding</h3>
                     <p class="mb-6">
-                        We evaluate <strong>Video-MemComp</strong> across three representative offline benchmarks: <strong>VideoMME</strong> (long-term), <strong>MLVU</strong> (multi-task), and <strong>EgoSchema</strong> (egocentric). 
+                        We evaluate <strong>Video-MemComp</strong> across three representative offline benchmarks: <strong>VideoMME</strong>, <strong>MLVU</strong>, and <strong>EgoSchema</strong>. 
                         As shown in Table 1, our method consistently meets or even exceeds the performance of full-cache baselines while using significantly less memory. This indicates that our Taylor expansion-guided strategy effectively identifies and preserves critical semantic information while discarding temporal redundancy.
                     </p>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
@@ -114,24 +114,25 @@
                     </div>
                 </div>
 
-                <!-- 3. Streaming & Efficiency Analysis -->
+                <!-- 3. Streaming Understanding & System Efficiency -->
                 <div class="result-block">
                     <h3 class="text-xl font-bold mb-4 text-gray-800">3. Streaming Understanding & System Efficiency</h3>
                     <p class="mb-4">
-                        In real-world streaming scenarios (RVS Benchmarks), Video-MemComp achieves the <strong>highest average accuracy</strong> among all memory-constrained methods. Unlike retrieval-based approaches (e.g., ReKV) that suffer from high latency, our Taylor-expansion framework provides a direct, training-free compression path.
+                        Evaluated with the <strong>LLaVA-OneVision-7B</strong> backbone, Video-MemComp demonstrates exceptional performance in real-world streaming scenarios (RVS Benchmarks), achieving the <strong>highest average accuracy</strong> among all memory-constrained methods. 
+                        Unlike retrieval-based approaches (e.g., ReKV) that often suffer from significant latency and retrieval overhead, our Taylor-expansion-guided framework provides a <strong>computationally efficient</strong> compression path with minimal inference-time cost.
                     </p>
                     <p class="mb-6">
-                        Hardware efficiency results in Table 3 show that our framework reduces <strong>Peak Memory by ~27%</strong> and <strong>Time-to-First-Token (TTFT) by ~50%</strong> compared to ReKV. This efficiency enables long-video inference on consumer-grade GPUs (like RTX 4090) that would otherwise trigger Out-of-Memory (OOM) errors.
+                        As detailed in Table 3, our framework significantly optimizes hardware utilization, reducing <strong>Peak Memory by ~27%</strong> and <strong>Time-to-First-Token (TTFT) by over 50%</strong> compared to the ReKV baseline. This remarkable efficiency ensures OOM-free inference for extremely long videos on consumer-grade GPUs (e.g., RTX 4090), which would typically be impossible for standard MLLMs.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-1 gap-8">
                         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                             <img src="https://github.com/user-attachments/assets/7ee86a59-da58-47f9-af34-bcbc42d88a63" alt="Table 2" class="w-full table-img mb-4">
                             <p class="text-sm text-gray-500 italic text-center">Table 2. Quantitative Results on RVS Streaming Benchmarks (Ego and Movie domains).</p>
                         </div>
-
+                
                         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                             <img src="https://github.com/user-attachments/assets/9e07384f-405d-48e1-bab0-fd7c0982fd16" alt="Table 3" class="w-full table-img mb-4">
-                            <p class="text-sm text-gray-500 italic text-center">Table 3. Efficiency metrics on LLaVA-OneVision-7B. Note the significant reduction in TTFT and Peak Memory.</p>
+                            <p class="text-sm text-gray-500 italic text-center">Table 3. System Efficiency Analysis on LLaVA-OneVision-7B. Our method shows superior memory and latency reduction.</p>
                         </div>
                     </div>
                 </div>
