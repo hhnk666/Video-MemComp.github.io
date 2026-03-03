@@ -1,1 +1,0 @@
-# Video-MemComp.github.io
