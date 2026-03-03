@@ -1,407 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video-MemComp</title>
-  
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    body {
-      font-family: 'Noto Sans', sans-serif;
-      color: #333;
-      background-color: #fafafa;
-    }
-    h1, h2, h3, h4 {
-      font-family: 'Google Sans', sans-serif;
-    }
-    .hero {
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    }
-    .code-block {
-      background-color: #f4f4f4;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      overflow-x: auto;
-      font-family: Consolas, monospace;
-      font-size: 0.9rem;
-    }
-    a {
-      color: #3273f6;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .table-container {
-      overflow-x: auto;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-      margin-bottom: 2rem;
-      background-color: #fff;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    }
-    th, td {
-      border: 1px solid #e2e8f0;
-      padding: 0.75rem;
-      text-align: left;
-    }
-    th {
-      background-color: #f8fafc;
-      font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video-MemComp: Extreme O(1)-Memory Compression</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        scroll-behavior: smooth;
+        .nav-link:hover { color: #3b82f6; transition: 0.3s; }
+        pre { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 8px; overflow-x: auto; }
+        .hero-bg { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
+        .table-img { box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 8px; }
+    </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-900 font-sans">
 
-  <!-- Hero Section -->
-  <section class="hero py-16 text-center shadow-md">
-    <div class="container mx-auto px-4">
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-800">
-        🎬 Video-MemComp
-      </h1>
-      <h2 class="text-xl md:text-2xl text-gray-600 mb-6 font-light max-w-4xl mx-auto">
-        Extreme O(1)-Memory Compression for Streaming Video Understanding via Taylor Expansion
-      </h2>
-      <div class="flex justify-center gap-4 mt-8">
-        <a href="#citation" class="bg-gray-800 text-white px-6 py-2 rounded-full font-medium hover:bg-gray-700 transition flex items-center shadow-lg">
-          <i class="ai ai-arxiv mr-2"></i> arXiv (Coming Soon)
-        </a>
-        <a href="https://github.com/YourUsername/Video-MemComp" class="bg-gray-800 text-white px-6 py-2 rounded-full font-medium hover:bg-gray-700 transition flex items-center shadow-lg">
-          <i class="fab fa-github mr-2"></i> GitHub
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main Content Container -->
-  <main class="container mx-auto px-4 py-12 max-w-5xl">
-    
-    <!-- Table of Contents Sidebar / Top Nav (Optional for long pages, kept simple here) -->
-    <div class="bg-white p-6 rounded-xl shadow-sm mb-12 border border-gray-100">
-      <h3 class="text-2xl font-bold mb-4 border-b pb-2">📚 Table of Contents</h3>
-      <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-gray-700">
-        <li><a href="#paper">📄 Paper</a></li>
-        <li><a href="#overview">🔍 Overview</a></li>
-        <li><a href="#experimental-results">📊 Experimental Results</a></li>
-        <li><a href="#key-features">✨ Key Features</a></li>
-        <li><a href="#supported-backbones">🧠 Supported Backbones</a></li>
-        <li><a href="#repository-structure">📁 Repository Structure</a></li>
-        <li><a href="#model-download">📥 Model Download Instructions</a></li>
-        <li><a href="#supported-benchmarks">📊 Supported Benchmarks</a></li>
-        <li><a href="#dataset-setup">📥 Dataset Setup</a></li>
-        <li><a href="#environment-setup">⚙️ Environment Setup</a></li>
-        <li><a href="#running-experiments">🚀 Running Experiments</a></li>
-        <li><a href="#reproducibility">📊 Reproducibility</a></li>
-        <li><a href="#notes">📌 Notes</a></li>
-        <li><a href="#citation">📎 Citation</a></li>
-      </ul>
-    </div>
-
-    <!-- Paper -->
-    <section id="paper" class="mb-16">
-      <h2 class="text-3xl font-bold mb-6 text-gray-800">📄 Paper</h2>
-      <p class="mb-6 text-lg text-gray-700"><strong>Video-MemComp: Extreme O(1)-Memory Compression for Streaming Video Understanding via Taylor Expansion</strong></p>
-      
-      <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-6">
-        <!-- REPLACE SRC WITH YOUR IMAGE URL -->
-        <img src="https://github.com/user-attachments/assets/7b6fcf51-4101-434a-85eb-5f8187df02d1" alt="Figure 1" class="w-full rounded mx-auto">
-        <p class="text-sm text-gray-500 mt-4 text-center italic">Figure 1. While standard Video-LLM models suffer from linear O(T)-memory growth, Video-MemComp maintains a strictly O(1)-memory via a Taylor expansion-guided hybrid strategy, enabling efficient streaming video understanding.</p>
-      </div>
-      <p class="text-gray-700">This repository contains the <strong>official implementation</strong> of Video-MemComp.</p>
-    </section>
-
-    <hr class="my-10 border-gray-200">
-
-    <!-- Overview -->
-    <section id="overview" class="mb-16">
-      <h2 class="text-3xl font-bold mb-6 text-gray-800">🔍 Overview</h2>
-      <p class="text-gray-700 mb-4 leading-relaxed">
-        Video-MemComp is a structure-aware KV memory compression framework for long-form and streaming video understanding with Multimodal Large Language Models (MLLMs).
-      </p>
-      <p class="text-gray-700 mb-4 leading-relaxed">
-        Unlike heuristic KV pruning or retrieval-based approaches, Video-MemComp is derived from a first-order Taylor expansion of error propagation and decomposes compression error into:
-      </p>
-      <ul class="list-disc list-inside text-gray-700 mb-6 ml-4">
-        <li><strong>Local Approximation Error</strong></li>
-        <li><strong>Layer-wise Structural Sensitivity</strong></li>
-      </ul>
-
-      <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-6">
-         <!-- REPLACE SRC WITH YOUR IMAGE URL -->
-        <img src="https://github.com/user-attachments/assets/e784ccff-4d16-459b-8016-8f4190509c1a" alt="Figure 2" class="w-full rounded mx-auto">
-        <p class="text-sm text-gray-500 mt-4 text-center italic">Figure 2. Overview of our Video-MemComp Framework. Guided by Taylor expansion (top), we split global memory compression into two objectives: 1) Minimizing Local Approximation Error (middle) via Pre-RoPE Aggregation and Intra-layer KV Pruning. 2) Managing Structural Sensitivity (bottom) via a Tri-Hybrid Budget Allocation strategy.</p>
-      </div>
-
-      <h3 class="text-xl font-bold mb-3 text-gray-800">The framework enables:</h3>
-      <ul class="list-disc list-inside text-gray-700 ml-4 space-y-1">
-        <li>Strict <strong>O(1)</strong> KV memory w.r.t. video length</li>
-        <li>No KV offloading</li>
-        <li>No retrieval latency</li>
-        <li>Strong performance across offline and streaming benchmarks</li>
-      </ul>
-    </section>
-
-    <hr class="my-10 border-gray-200">
-
-    <!-- Experimental Results -->
-    <section id="experimental-results" class="mb-16">
-      <h2 class="text-3xl font-bold mb-6 text-gray-800">📊 Experimental Results</h2>
-      
-      <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-8">
-         <!-- REPLACE SRC WITH YOUR IMAGE URL -->
-        <img src="https://github.com/user-attachments/assets/3be76d0e-bc57-4655-80ec-68b812817701" alt="Table 1" class="w-full rounded mx-auto">
-        <p class="text-sm text-gray-500 mt-4 text-center italic">Table 1. Performance Comparison on Offline Video Understanding Benchmarks. We evaluate Video-MemComp against state-of-the-art compression methods and full-cache baselines. Our method meets or exceeds full-cache performance under strict memory constraints.</p>
-      </div>
-
-      <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-         <!-- REPLACE SRC WITH YOUR IMAGE URL -->
-        <img src="https://github.com/user-attachments/assets/a79ac8cb-e435-4f94-9891-6d4559dcdf79" alt="Figure 3" class="w-full rounded mx-auto max-w-3xl">
-        <p class="text-sm text-gray-500 mt-4 text-center italic">Figure 3. Performance on MLVU with Qwen2-VL-7B. Our method outperforms strong baselines across all memory budgets, and even surpasses the Full KV baseline at 6K, 12K, and 24K KV budgets, showing that Video-MemComp removes redundancy while preserving key semantics.</p>
-      </div>
-    </section>
-
-    <hr class="my-10 border-gray-200">
-
-    <!-- Key Features & Supported Backbones -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-      
-      <section id="key-features">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">✨ Key Features</h2>
-        <ul class="space-y-3 text-gray-700">
-          <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> O(1) KV cache growth w.r.t. video length</li>
-          <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Works for both offline & streaming video benchmarks</li>
-          <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Supports multiple MLLM backbones</li>
-          <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Backbone-specific hyperparameters provided</li>
-          <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Reproducible evaluation scripts</li>
-        </ul>
-      </section>
-
-      <section id="supported-backbones">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">🧠 Supported Backbones</h2>
-        <div class="table-container rounded-lg overflow-hidden border border-gray-200">
-          <table class="m-0 text-gray-700">
-            <thead>
-              <tr>
-                <th>Model</th>
-                <th class="text-center">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Qwen2-VL-7B</td><td class="text-center">✅</td></tr>
-              <tr><td>Qwen2.5-VL-3B</td><td class="text-center">✅</td></tr>
-              <tr><td>Qwen2.5-VL-7B</td><td class="text-center">✅</td></tr>
-              <tr><td>LLaVA-OneVision-7B</td><td class="text-center">✅</td></tr>
-              <tr><td>InternVL-3.5 (2B)</td><td class="text-center">✅</td></tr>
-            </tbody>
-          </table>
+    <!-- Header / Hero Section -->
+    <header class="hero-bg text-white py-20 px-4 text-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-4">🎬 Video-MemComp</h1>
+        <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
+            Extreme O(1)-Memory Compression for Streaming Video Understanding via Taylor Expansion
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 text-lg">
+            <a href="https://github.com/hhnk666/videomemorycompress/tree/main" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-full font-bold transition shadow-lg flex items-center">
+                <i class="fab fa-github mr-2"></i> Implementation Code
+            </a>
+            <a href="#" class="bg-gray-700 hover:bg-gray-800 px-8 py-3 rounded-full font-bold transition shadow-lg flex items-center">
+                <i class="fas fa-file-pdf mr-2"></i> Paper (ArXiv)
+            </a>
         </div>
-      </section>
+    </header>
 
-    </div>
-
-    <hr class="my-10 border-gray-200">
-
-    <!-- Repository Structure -->
-    <section id="repository-structure" class="mb-16">
-      <h2 class="text-3xl font-bold mb-6 text-gray-800">📁 Repository Structure</h2>
-      <p class="text-gray-700 mb-4">After downloading models and datasets, your directory should look like:</p>
-      <div class="code-block text-gray-800">
-<pre>Video-MemComp/
-├── data/
-│   ├── egoschema/
-│   ├── mlvu/
-│   ├── videomme/
-│   └── ovobench/
-│
-├── model/
-│   ├── InternVL3_5/
-│   ├── Qwen2___5-VL-3B-Instruct/
-│   ├── Qwen2___5-VL-7B-Instruct/
-│   ├── qwen2vl/
-│   └── llava-onevision-qwen2-7b-ov-hf/
-│
-├── internvl/
-├── llavaov/
-├── qwen2_5vl/
-└── qwen2_vl/</pre>
-      </div>
-      <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-4 text-yellow-800">
-        <p>⚠️ <strong>Note:</strong> Model weights and datasets are NOT included in this repository and must be downloaded manually.</p>
-      </div>
-    </section>
-
-    <hr class="my-10 border-gray-200">
-
-    <!-- Model Download -->
-    <section id="model-download" class="mb-16">
-      <h2 class="text-3xl font-bold mb-6 text-gray-800">📥 Model Download Instructions</h2>
-      <p class="text-gray-700 mb-6">Please download the following models and place them under <code>model/</code> as shown above.</p>
-
-      <div class="space-y-6">
-        <div>
-          <h3 id="1️⃣-qwen2-vl-7b" class="text-xl font-bold text-gray-800">1️⃣ Qwen2-VL-7B</h3>
-          <p class="text-gray-700 mt-2"><strong>Model:</strong> Qwen2-VL<br>
-          <strong>Download from:</strong> <a href="https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct">HuggingFace Repo</a><br>
-          <strong>Place into:</strong> <code>model/qwen2vl/</code></p>
+    <!-- Sticky Navigation -->
+    <nav class="sticky top-0 bg-white shadow-md z-50 py-4 hidden md:block">
+        <div class="max-w-6xl mx-auto flex justify-center gap-10 font-medium text-gray-600">
+            <a href="#paper" class="nav-link">Paper</a>
+            <a href="#overview" class="nav-link">Overview</a>
+            <a href="#results" class="nav-link">Results</a>
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#backbones" class="nav-link">Backbones</a>
+            <a href="#citation" class="nav-link">Citation</a>
         </div>
-        
-        <div>
-          <h3 id="2️⃣-qwen25-vl-3b--7b" class="text-xl font-bold text-gray-800">2️⃣ Qwen2.5-VL (3B / 7B)</h3>
-          <p class="text-gray-700 mt-2"><strong>Model:</strong> Qwen2.5-VL<br>
-          <strong>Download from:</strong> <a href="https://huggingface.co/Qwen">HuggingFace Repo</a><br>
-          <strong>Place into:</strong><br>
-          <code>model/Qwen2___5-VL-3B-Instruct/</code><br>
-          <code>model/Qwen2___5-VL-7B-Instruct/</code></p>
-        </div>
+    </nav>
 
-        <div>
-          <h3 id="3️⃣-llava-onevision-7b" class="text-xl font-bold text-gray-800">3️⃣ LLaVA-OneVision-7B</h3>
-          <p class="text-gray-700 mt-2"><strong>Model:</strong> LLaVA-OneVision<br>
-          <strong>Download from:</strong> <a href="https://huggingface.co/llava-hf/llava-onevision-qwen2-7b-ov-hf">HuggingFace Repo</a><br>
-          <strong>Place into:</strong> <code>model/llava-onevision-qwen2-7b-ov-hf/</code></p>
-        </div>
+    <main class="max-w-5xl mx-auto px-6 py-12">
 
-        <div>
-          <h3 id="4️⃣-internvl-35-2b" class="text-xl font-bold text-gray-800">4️⃣ InternVL-3.5-2B</h3>
-          <p class="text-gray-700 mt-2"><strong>Model:</strong> InternVL<br>
-          <strong>Download from:</strong> <a href="https://huggingface.co/OpenGVLab/InternVL3_5-2B">HuggingFace Repo</a><br>
-          <strong>Place into:</strong> <code>model/InternVL3_5/</code></p>
-        </div>
-      </div>
-    </section>
+        <!-- 📄 Paper Section -->
+        <section id="paper" class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 border-b-2 border-blue-500 inline-block">📄 Paper Info</h2>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mt-4 text-center">
+                <img src="https://github.com/user-attachments/assets/7b6fcf51-4101-434a-85eb-5f8187df02d1" alt="Figure 1" class="w-full max-w-4xl mx-auto table-img mb-6">
+                <p class="italic text-gray-600 text-sm max-w-3xl mx-auto">
+                    Figure 1. While standard Video-LLM models suffer from linear O(T)-memory growth, Video-MemComp maintains a strictly O(1)-memory via a Taylor expansion-guided hybrid strategy.
+                </p>
+            </div>
+        </section>
 
-    <hr class="my-10 border-gray-200">
+        <!-- 🔍 Overview Section -->
+        <section id="overview" class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 border-b-2 border-blue-500 inline-block">🔍 Overview</h2>
+            <p class="text-lg leading-relaxed mb-8 text-gray-700">
+                Video-MemComp is a structure-aware KV memory compression framework derived from a first-order Taylor expansion of error propagation. It effectively decomposes compression error into <strong>Local Approximation Error</strong> and <strong>Layer-wise Structural Sensitivity</strong>.
+            </p>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                <img src="https://github.com/user-attachments/assets/e784ccff-4d16-459b-8016-8f4190509c1a" alt="Figure 2" class="w-full rounded-lg mb-6 shadow-sm">
+                <p class="italic text-gray-600 text-sm max-w-3xl mx-auto">
+                    Figure 2. Overview of Video-MemComp Framework: guided by Taylor expansion, we minimize local error via Pre-RoPE aggregation and manage sensitivity via a Tri-Hybrid budget allocation.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-12">
+                <div class="bg-blue-50 p-5 rounded-lg border-l-4 border-blue-500 flex items-start">
+                    <i class="fas fa-microchip text-blue-500 mt-1 mr-4"></i>
+                    <div><span class="font-bold">Strict O(1) Memory</span><br><p class="text-sm text-gray-600">Fixed KV memory usage regardless of video length.</p></div>
+                </div>
+                <div class="bg-green-50 p-5 rounded-lg border-l-4 border-green-500 flex items-start">
+                    <i class="fas fa-bolt text-green-500 mt-1 mr-4"></i>
+                    <div><span class="font-bold">Zero Offloading</span><br><p class="text-sm text-gray-600">No CPU/GPU data transfer latency during inference.</p></div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Benchmarks & Dataset Setup -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-      <section id="supported-benchmarks">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">📊 Supported Benchmarks</h2>
-        <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
-          <li>VideoMME</li>
-          <li>MLVU</li>
-          <li>EgoSchema</li>
-          <li>OVO-Bench</li>
-        </ul>
-      </section>
+        <!-- 📊 Experimental Results Section -->
+        <section id="results" class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 border-b-2 border-blue-500 inline-block">📊 Experimental Results</h2>
+            
+            <div class="space-y-16">
+                <!-- Table 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <img src="https://github.com/user-attachments/assets/3be76d0e-bc57-4655-80ec-68b812817701" alt="Table 1" class="w-full table-img mb-4">
+                    <p class="text-sm text-gray-500 italic text-center">Table 1. Performance Comparison on Offline Video Understanding Benchmarks (VideoMME, MLVU, EgoSchema).</p>
+                </div>
 
-      <section id="dataset-setup">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">📥 Dataset Setup</h2>
-        <div class="space-y-6 text-gray-700 text-sm">
-          <div>
-            <h4 class="font-bold text-base text-gray-800">EgoSchema</h4>
-            <p>Official repo: <a href="https://github.com/egoschema/EgoSchema">Link</a></p>
-            <p class="mt-1 font-mono bg-gray-100 p-2 rounded">data/egoschema/<br>├── full.json<br>├── subset_answers.json<br>└── videos/</p>
-          </div>
-          <div>
-            <h4 class="font-bold text-base text-gray-800">MLVU</h4>
-            <p>Official repo: <a href="https://github.com/MLVU-benchmark/MLVU">Link</a></p>
-            <p class="mt-1 font-mono bg-gray-100 p-2 rounded">data/mlvu/</p>
-          </div>
-          <div>
-            <h4 class="font-bold text-base text-gray-800">VideoMME</h4>
-            <p>Official repo: <a href="https://github.com/VideoMME/VideoMME">Link</a></p>
-            <p class="mt-1 font-mono bg-gray-100 p-2 rounded">data/videomme/<br>└── videos/</p>
-          </div>
-          <div>
-            <h4 class="font-bold text-base text-gray-800">OVO-Bench</h4>
-            <p class="mt-1 font-mono bg-gray-100 p-2 rounded">data/ovobench/<br>├── chunked_videos/<br>├── src_videos/<br>└── ovo_bench_new.json</p>
-          </div>
-        </div>
-      </section>
-    </div>
+                <!-- Figure 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <img src="https://github.com/user-attachments/assets/a79ac8cb-e435-4f94-9891-6d4559dcdf79" alt="Figure 3" class="w-full max-w-2xl mx-auto mb-4">
+                    <p class="text-sm text-gray-500 italic text-center">Figure 3. Performance on MLVU with Qwen2-VL-7B across various KV budgets.</p>
+                </div>
 
-    <hr class="my-10 border-gray-200">
+                <!-- New Table 2 & 3 -->
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-12">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <!-- 请在此处替换 Table 2 的图片链接 -->
+                        <img src="https://github.com/user-attachments/assets/7ee86a59-da58-47f9-af34-bcbc42d88a63" alt="Table 2" class="w-full table-img mb-4">
+                        <p class="text-sm text-gray-500 italic text-center">Table 2. Quantitative Results on RVS Streaming Benchmarks: Comparison with state-of-the-art streaming baselines.</p>
+                    </div>
 
-    <!-- Environment & Execution -->
-    <section id="environment-setup" class="mb-16">
-      <h2 class="text-3xl font-bold mb-6 text-gray-800">⚙️ Environment Setup</h2>
-      <p class="text-gray-700 mb-4">We recommend one Conda environment per backbone. Example for Qwen2.5-VL:</p>
-      <div class="code-block">
-<pre>conda env create -f qwen2_5vl/environment.yml
-conda activate qwen2_5vl
-pip install -r qwen2_5vl/requirements.txt</pre>
-      </div>
-      <p class="text-gray-600 mt-2 text-sm italic">CUDA / PyTorch versions are backbone-specific. Please follow the provided environment.yml.</p>
-    </section>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <!-- 请在此处替换 Table 3 的图片链接 -->
+                        <img src="https://github.com/user-attachments/assets/9e07384f-405d-48e1-bab0-fd7c0982fd16" alt="Table 3" class="w-full table-img mb-4">
+                        <p class="text-sm text-gray-500 italic text-center">Table 3. System Efficiency on LLaVA-OneVision-7B: Peak Memory, Latency, and Throughput analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="running-experiments" class="mb-16">
-      <h2 class="text-3xl font-bold mb-6 text-gray-800">🚀 Running Experiments</h2>
-      <p class="text-gray-700 mb-4">All experiments are launched via provided shell scripts.</p>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg">
-          <h4 class="font-bold mb-2">EgoSchema (Qwen2.5-VL)</h4>
-          <div class="code-block text-xs"><pre>cd qwen2_5vl/scripts
-bash eval_egoschema.sh</pre></div>
-        </div>
-        <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg">
-          <h4 class="font-bold mb-2">MLVU</h4>
-          <div class="code-block text-xs"><pre>bash eval_mlvu.sh</pre></div>
-        </div>
-        <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg">
-          <h4 class="font-bold mb-2">VideoMME</h4>
-          <div class="code-block text-xs"><pre>bash eval_videomme.sh</pre></div>
-        </div>
-        <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg">
-          <h4 class="font-bold mb-2">Streaming (OVO-Bench)</h4>
-          <div class="code-block text-xs"><pre>bash eval_ovobench.sh</pre></div>
-        </div>
-      </div>
-    </section>
+        <!-- ✨ Key Features -->
+        <section id="features" class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 border-b-2 border-blue-500 inline-block">✨ Key Features</h2>
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+                <li class="flex items-center bg-white p-4 rounded shadow-sm"><i class="fas fa-check-circle text-blue-500 mr-3"></i> O(1) KV cache growth</li>
+                <li class="flex items-center bg-white p-4 rounded shadow-sm"><i class="fas fa-check-circle text-blue-500 mr-3"></i> Support for Offline & Streaming</li>
+                <li class="flex items-center bg-white p-4 rounded shadow-sm"><i class="fas fa-check-circle text-blue-500 mr-3"></i> Multiple MLLM Backbone support</li>
+                <li class="flex items-center bg-white p-4 rounded shadow-sm"><i class="fas fa-check-circle text-blue-500 mr-3"></i> Backbone-specific hyperparams</li>
+            </ul>
+            
+            <div class="mt-12 bg-gray-100 p-6 rounded-lg">
+                <h3 class="font-bold mb-4">📊 Reproducibility</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-600 text-sm">
+                    <li>All hyperparameters follow the paper precisely.</li>
+                    <li>Results computed on official dev splits.</li>
+                    <li>No KV offloading or retrieval-based augmentation.</li>
+                </ul>
+            </div>
+        </section>
 
-    <hr class="my-10 border-gray-200">
+        <!-- 🧠 Backbones -->
+        <section id="backbones" class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 border-b-2 border-blue-500 inline-block">🧠 Supported Backbones</h2>
+            <div class="overflow-x-auto shadow-sm rounded-xl">
+                <table class="w-full text-left bg-white">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="p-4 font-bold">Model</th>
+                            <th class="p-4 font-bold text-center">状态</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        <tr><td class="p-4">Qwen2-VL-7B</td><td class="p-4 text-center text-green-500">✅ Supported</td></tr>
+                        <tr><td class="p-4">Qwen2.5-VL (3B/7B)</td><td class="p-4 text-center text-green-500">✅ Supported</td></tr>
+                        <tr><td class="p-4">LLaVA-OneVision-7B</td><td class="p-4 text-center text-green-500">✅ Supported</td></tr>
+                        <tr><td class="p-4">InternVL-3.5 (2B)</td><td class="p-4 text-center text-green-500">✅ Supported</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mt-6 text-sm text-gray-500 italic flex items-center">
+                <i class="fas fa-info-circle mr-2"></i> GPU with large memory (e.g., A6000) is recommended for long video evaluation.
+            </p>
+        </section>
 
-    <!-- Reproducibility & Notes -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-      <section id="reproducibility">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">📊 Reproducibility</h2>
-        <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
-          <li>All hyperparameters follow the paper.</li>
-          <li>Results are computed on official dev splits.</li>
-          <li>No KV offloading.</li>
-          <li>No retrieval-based augmentation.</li>
-        </ul>
-      </section>
-
-      <section id="notes">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">📌 Notes</h2>
-        <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
-          <li>Please verify model and dataset paths before running.</li>
-          <li>It is recommended to first run subset/debug mode before full evaluation.</li>
-          <li>GPU with large memory (e.g., A6000) is recommended for long videos.</li>
-        </ul>
-      </section>
-    </div>
-
-    <!-- Citation -->
-    <section id="citation" class="mb-16">
-      <div class="bg-gray-800 text-white p-8 rounded-2xl shadow-lg relative">
-        <h2 class="text-2xl font-bold mb-4">📎 Citation</h2>
-        <p class="mb-4 text-gray-300">If you find this work helpful, please consider citing our paper:</p>
-        <div class="code-block bg-gray-900 text-green-400 border border-gray-700">
-<pre>@article{video_memcomp_2026,
+        <!-- 📎 Citation -->
+        <section id="citation" class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 border-b-2 border-blue-500 inline-block">📎 Citation</h2>
+            <div class="relative group">
+                <button class="absolute top-4 right-4 text-xs bg-gray-700 text-white px-3 py-1 rounded hover:bg-gray-600 transition">Copy BibTeX</button>
+                <pre><code>@article{videomemcomp2024,
   title={Video-MemComp: Extreme O(1)-Memory Compression for Streaming Video Understanding via Taylor Expansion},
-  author={Your Authors Here},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
-  year={2026}
-}</pre>
-        </div>
-      </div>
-    </section>
+  author={Niu, Yonghui and others},
+  journal={arXiv preprint},
+  year={2024}
+}</code></pre>
+            </div>
+        </section>
 
-  </main>
+    </main>
 
-  <footer class="bg-gray-100 py-8 border-t border-gray-200">
-    <div class="container mx-auto px-4 text-center text-gray-600">
-      <p>© 2026 Video-MemComp Team. Licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="text-blue-500">CC BY-SA 4.0</a>.</p>
-    </div>
-  </footer>
+    <footer class="bg-gray-900 text-gray-400 py-12 text-center">
+        <p>© 2024 Video-MemComp Team. Visit Source Repo on <a href="https://github.com/hhnk666/videomemorycompress/tree/main" class="text-blue-400 underline">GitHub</a>.</p>
+    </footer>
 
 </body>
 </html>
