@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$']] }, svg: { fontCache:'global' } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+
   <style>
     body { font-family: 'Noto Sans', sans-serif; }
     .title, .subtitle, h1, h2, h3 { font-family: 'Google Sans', sans-serif; }
@@ -21,10 +26,7 @@
       line-height: 1.25;
     }
     .author-block { display: inline; }
-    .author-block a { color: #363636; }
-    .author-block a:hover { color: #3273dc; }
 
-    /* Section banner — identical to Video-MME "hero is-light is-small" */
     .section-banner {
       background-color: #f5f5f5;
       border-top: 1px solid #dbdbdb;
@@ -32,11 +34,7 @@
       padding: 1.5rem 1rem;
       text-align: center;
     }
-    .section-banner .title {
-      font-family: 'Google Sans', sans-serif;
-      font-weight: 700;
-      margin-bottom: 0;
-    }
+    .section-banner .title { font-weight: 700; margin-bottom: 0; }
 
     .content.has-text-justified { text-align: justify; }
 
@@ -44,8 +42,9 @@
       font-size: 0.9rem;
       color: #555;
       font-style: italic;
-      margin-top: 0.8rem;
+      margin-top: 0.9rem;
       text-align: justify;
+      line-height: 1.65;
     }
 
     pre {
@@ -56,29 +55,11 @@
       overflow-x: auto;
     }
     code { font-family: Consolas, "Courier New", monospace; color: #333; }
-
-    /* Slim metrics bar */
-    .metrics-bar {
-      background: #fafafa;
-      border-top: 1px solid #ededed;
-      border-bottom: 1px solid #ededed;
-      padding: 1.2rem 0;
-    }
-    .metric-item { text-align: center; flex: 1; padding: 0 0.5rem; }
-    .metric-value {
-      font-family: 'Google Sans', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #3273dc;
-      line-height: 1.1;
-    }
-    .metric-label { font-size: 0.78rem; color: #7a7a7a; margin-top: 0.15rem; }
-    .metric-sep { width: 1px; background: #dbdbdb; align-self: stretch; flex-shrink: 0; }
   </style>
 </head>
 <body>
 
-<!-- ══════════════════ NAVBAR ══════════════════ -->
+<!-- ══════════ NAVBAR ══════════ -->
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -91,18 +72,11 @@
       <a class="navbar-item" href="#method">Method</a>
       <a class="navbar-item" href="#experiments">Experiments</a>
       <a class="navbar-item" href="#citation">Citation</a>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">More Research</a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://video-mme.github.io/" target="_blank">Video-MME</a>
-          <a class="navbar-item" href="https://github.com/hhnk666/videomemorycompress" target="_blank">GitHub</a>
-        </div>
-      </div>
     </div>
   </div>
 </nav>
 
-<!-- ══════════════════ HERO ══════════════════ -->
+<!-- ══════════ HERO ══════════ -->
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
@@ -114,7 +88,6 @@
             for Streaming Video Understanding via Taylor Expansion
           </h1>
 
-          <!-- Authors -->
           <div class="is-size-5 publication-authors" style="margin-top:1.6rem; line-height:2;">
             <span class="author-block">Yonghui Niu<sup style="color:#3273dc;">1</sup>,&nbsp;</span>
             <span class="author-block">Yuhao Ji<sup style="color:#cc0000;">2,3</sup>,&nbsp;</span>
@@ -124,10 +97,9 @@
             <span class="author-block">Junlan Feng<sup style="color:#8e44ad;">4</sup>,&nbsp;</span>
             <span class="author-block">Ran He<sup style="color:#e67e22;">5</sup>,&nbsp;</span>
             <span class="author-block">Caifeng Shan<sup style="color:#3273dc;">1</sup>,&nbsp;</span>
-            <span class="author-block">Chaoyou Fu<sup style="color:#3273dc;">1,</sup><sup>✉</sup></span>
+            <span class="author-block">Chaoyou Fu<sup style="color:#3273dc;">1</sup><sup>✉</sup></span>
           </div>
 
-          <!-- Affiliations -->
           <div class="is-size-6" style="margin-top:0.7rem; color:#4a4a4a; line-height:1.8;">
             <span style="margin-right:1.4rem;"><sup style="color:#3273dc; font-weight:600;">1</sup>&thinsp;Nanjing University</span>
             <span style="margin-right:1.4rem;"><sup style="color:#cc0000; font-weight:600;">2</sup>&thinsp;Shanghai University</span>
@@ -136,7 +108,6 @@
             <span><sup style="color:#e67e22; font-weight:600;">5</sup>&thinsp;Institute of Automation, CAS</span>
           </div>
 
-          <!-- Link buttons — same style as Video-MME -->
           <div class="column has-text-centered" style="margin-top:0.6rem;">
             <div class="publication-links">
               <span class="link-block">
@@ -161,8 +132,7 @@
   </div>
 </section>
 
-
-<!-- ══════════════════ ABSTRACT ══════════════════ -->
+<!-- ══════════ ABSTRACT ══════════ -->
 <section class="section" id="abstract">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
@@ -173,10 +143,10 @@
             Multimodal Large Language Models (MLLMs) are currently hindered by severe memory bottlenecks when processing streaming videos, as the KV cache grows linearly with sequence length. Existing compression methods often rely on heuristic eviction strategies, failing to account for the explosive accumulation of approximation errors during long-context generation.
           </p>
           <p>
-            In this paper, we propose <strong>Video-MemComp</strong>, a novel hybrid framework that achieves extreme <em>O</em>(1) memory compression. Our method theoretically decomposes the compression error into two orthogonal components — <em>local approximation error</em> and <em>layer-wise structural sensitivity</em> — derived via a first-order Taylor expansion. To minimize local approximation error, we introduce a pre-RoPE token aggregation strategy that incorporates an attention-conserving logit bias, effectively mitigating geometric distortions caused by RoPE rotations. To manage layer-wise sensitivity, we dynamically allocate KV-cache budgets based on offline gradient priors and online context entropy, ensuring high-sensitivity layers are prioritized.
+            In this paper, we propose <strong>Video-MemComp</strong>, a novel hybrid framework that achieves extreme $O(1)$ memory compression. Our method theoretically decomposes the compression error into two orthogonal components — <em>local approximation error</em> $\mathcal{E}_l$ and <em>layer-wise structural sensitivity</em> $\mathcal{S}_l$ — derived via a first-order Taylor expansion. To minimize $\mathcal{E}_l$, we introduce a pre-RoPE token aggregation strategy incorporating an attention-conserving logit bias. To manage $\mathcal{S}_l$, we dynamically allocate KV-cache budgets based on offline gradient priors and online context entropy.
           </p>
           <p>
-            Extensive experiments demonstrate that Video-MemComp consistently achieves performance on par with or superior to full-cache baselines and state-of-the-art compression methods across benchmarks such as MLVU and VideoMME. Specifically, our framework improves the overall accuracy of Qwen2.5-VL-3B from 62.3% to 64.1% while maintaining a fixed KV-cache footprint of only 6,000 tokens per layer, effectively achieving over 90% memory savings without performance degradation.
+            Extensive experiments demonstrate that Video-MemComp consistently achieves performance on par with or superior to full-cache baselines across MLVU and VideoMME. Specifically, our framework improves the overall accuracy of Qwen2.5-VL-3B from 62.3% to 64.1% while maintaining a fixed KV-cache footprint of only 6,000 tokens per layer, effectively achieving over 90% memory savings without performance degradation.
           </p>
         </div>
       </div>
@@ -184,17 +154,18 @@
   </div>
 </section>
 
-<!-- ══════════════════ METHOD BANNER ══════════════════ -->
+<!-- ══════════ METHOD BANNER ══════════ -->
 <div class="section-banner" id="method">
   <h1 class="title is-2">Method</h1>
 </div>
-
 <!-- ══════════════════ METHOD ══════════════════ -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-
+<p class="has-text-justified" style="font-size:1.03rem; line-height:1.8;">
+          Guided by a first-order Taylor expansion, we decompose the global memory compression problem into two orthogonal optimization objectives. The global output error is bounded as $\|\Delta\mathcal{O}\| \le \sum_{l} \mathcal{S}_l \cdot \mathcal{E}_l$, leading to a hierarchical design that jointly addresses intra-layer token compression and inter-layer budget scheduling.
+        </p>
         <div class="box" style="margin-bottom:2rem;">
           <figure class="image">
             <img src="https://github.com/user-attachments/assets/7b6fcf51-4101-434a-85eb-5f8187df02d1"
@@ -220,12 +191,13 @@
   </div>
 </section>
 
-<!-- ══════════════════ EXPERIMENTS BANNER ══════════════════ -->
+
+<!-- ══════════ EXPERIMENTS BANNER ══════════ -->
 <div class="section-banner" id="experiments">
   <h1 class="title is-2">Experiment Results</h1>
 </div>
 
-<!-- ══════════════════ EXPERIMENTS ══════════════════ -->
+<!-- ══════════ EXPERIMENTS ══════════ -->
 <section class="section">
   <div class="container">
 
@@ -236,10 +208,10 @@
         <p class="has-text-justified">
           We evaluate <strong>Video-MemComp</strong> across three representative offline benchmarks: <strong>VideoMME</strong>, <strong>MLVU</strong>, and <strong>EgoSchema</strong>. As shown in Table 1, our method consistently meets or exceeds the performance of full-cache baselines while using significantly less memory. This demonstrates that our Taylor expansion-guided strategy effectively identifies and preserves semantically critical information while discarding temporal redundancy.
         </p>
-        <div class="box has-text-centered">
+        <div class="box has-text-centered mb-5">
           <figure class="image" style="display:inline-block; width:92%;">
             <img src="https://github.com/user-attachments/assets/3be76d0e-bc57-4655-80ec-68b812817701"
-                 alt="Table 1: Performance on offline benchmarks">
+                 alt="Table 1: Offline benchmark results">
           </figure>
           <p class="figure-caption">
             <strong>Table 1.</strong> Performance comparison on offline video understanding benchmarks (VideoMME, MLVU, EgoSchema).
@@ -253,15 +225,15 @@
       <div class="column is-four-fifths content">
         <h2 class="title is-4">2.&ensp;Robustness Across Memory Budgets</h2>
         <p class="has-text-justified">
-          Figure 3 illustrates the performance curve on MLVU using the <strong>Qwen2-VL-7B</strong> backbone across varying KV cache budgets. Video-MemComp outperforms all strong baselines, including SnapKV and InfiniPot, across the entire budget spectrum. Notably, at 6K, 12K, and 24K token budgets, <strong>Video-MemComp surpasses the Full-KV baseline</strong>, demonstrating that intelligent compression can outperform naive full-cache retention.
+          Figure 2 illustrates the performance curve on MLVU using the <strong>Qwen2-VL-7B</strong> backbone across varying KV cache budgets. Video-MemComp outperforms all strong baselines, including SnapKV and InfiniPot, across the entire budget spectrum. Notably, at 6K, 12K, and 24K token budgets, <strong>Video-MemComp surpasses the Full-KV baseline</strong>, demonstrating that intelligent compression can outperform naive full-cache retention.
         </p>
-        <div class="box has-text-centered">
+        <div class="box has-text-centered mb-5">
           <figure class="image" style="display:inline-block; width:78%;">
             <img src="https://github.com/user-attachments/assets/a79ac8cb-e435-4f94-9891-6d4559dcdf79"
-                 alt="Figure 3: Accuracy vs KV cache budget on MLVU">
+                 alt="Figure 2: Accuracy vs KV cache budget">
           </figure>
           <p class="figure-caption">
-            <strong>Figure 3.</strong> Accuracy versus KV cache budget on MLVU (Qwen2-VL-7B backbone). Video-MemComp maintains a consistently superior accuracy–memory trade-off compared to all baselines.
+            <strong>Figure 2.</strong> Accuracy versus KV cache budget on MLVU (Qwen2-VL-7B backbone). Video-MemComp maintains a consistently superior accuracy–memory trade-off compared to all baselines.
           </p>
         </div>
       </div>
@@ -274,7 +246,7 @@
         <p class="has-text-justified">
           Evaluated using the <strong>LLaVA-OneVision-7B</strong> backbone on real-world streaming benchmarks, Video-MemComp achieves the highest average accuracy among all memory-constrained methods. As detailed in Table 3, our framework reduces <strong>Peak GPU Memory by ~27%</strong> and cuts <strong>Time-to-First-Token (TTFT) by over 50%</strong> relative to the ReKV baseline, confirming its suitability for latency-sensitive deployment scenarios.
         </p>
-        <div class="columns">
+        <div class="columns mt-4">
           <div class="column">
             <div class="box has-text-centered">
               <figure class="image">
@@ -304,17 +276,14 @@
   </div>
 </section>
 
-<!-- ══════════════════ CITATION BANNER ══════════════════ -->
+<!-- ══════════ CITATION BANNER ══════════ -->
 <div class="section-banner" id="citation">
   <h1 class="title is-2">Citation</h1>
 </div>
 
-<!-- ══════════════════ BIBTEX ══════════════════ -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
-    <p style="margin-bottom:1rem;">
-      If you find this work useful for your research, please consider citing:
-    </p>
+    <p style="margin-bottom:1rem;">If you find this work useful for your research, please consider citing:</p>
     <pre><code>@article{niu2024videomemcomp,
   title   = {Video-MemComp: Extreme O(1)-Memory Compression for Streaming
              Video Understanding via Taylor Expansion},
@@ -327,7 +296,7 @@
   </div>
 </section>
 
-<!-- ══════════════════ FOOTER ══════════════════ -->
+<!-- ══════════ FOOTER ══════════ -->
 <footer class="footer">
   <div class="content has-text-centered">
     <p>
@@ -335,8 +304,7 @@
       <a href="https://video-mme.github.io/" target="_blank">Video-MME</a>
       and <a href="https://nerfies.github.io/" target="_blank">Nerfies</a>,
       licensed under a
-      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-        Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
     </p>
   </div>
 </footer>
